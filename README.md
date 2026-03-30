@@ -1,2 +1,0 @@
-# Agency
-LuxMotion Agency
