@@ -22,6 +22,16 @@ Route::post('/webhook/stripe', [PaymentController::class, 'webhook'])
     ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class])
     ->name('webhook.stripe');
 
+// ── PayPal webhook (no CSRF) ──────────────────────────────────────────
+Route::post('/webhook/paypal', [PaymentController::class, 'paypalWebhook'])
+    ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class])
+    ->name('webhook.paypal');
+
+// ── Crypto / NowPayments IPN (no CSRF) ────────────────────────────────
+Route::post('/webhook/crypto', [PaymentController::class, 'cryptoWebhook'])
+    ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class])
+    ->name('payment.crypto.webhook');
+
 // ── Auth routes (Breeze) ───────────────────────────────────────────────
 require __DIR__.'/auth.php';
 
