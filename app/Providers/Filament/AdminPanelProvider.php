@@ -36,10 +36,10 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->brandName('LuxMotion Admin')
             ->navigationGroups([
-                NavigationGroup::make('Operations')->icon('heroicon-o-briefcase'),
-                NavigationGroup::make('Finance')->icon('heroicon-o-banknotes'),
-                NavigationGroup::make('Support')->icon('heroicon-o-chat-bubble-left-right'),
-                NavigationGroup::make('Settings')->icon('heroicon-o-cog-6-tooth'),
+                NavigationGroup::make('Operations'),
+                NavigationGroup::make('Finance'),
+                NavigationGroup::make('Support'),
+                NavigationGroup::make('Settings'),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

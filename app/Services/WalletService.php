@@ -91,6 +91,9 @@ class WalletService
 
     private function getOrCreateWallet(User $user): Wallet
     {
-        return $user->wallet ?? Wallet::create(['user_id' => $user->id, 'balance' => 0, 'currency' => 'USD']);
+        return Wallet::firstOrCreate(
+            ['user_id' => $user->id],
+            ['balance' => 0, 'currency' => 'USD']
+        );
     }
 }

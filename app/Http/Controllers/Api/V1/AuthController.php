@@ -41,7 +41,7 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages(['email' => ['Invalid credentials.']]);
+            return response()->json(['success' => false, 'data' => null, 'message' => 'Invalid credentials.'], 401);
         }
 
         if ($user->is_banned) {

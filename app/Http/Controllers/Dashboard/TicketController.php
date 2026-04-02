@@ -54,6 +54,11 @@ class TicketController extends Controller
     public function reply(Request $request, Ticket $ticket)
     {
         $this->authorize('view', $ticket);
+
+        if ($ticket->status === 'closed') {
+            abort(403, 'Cannot reply to a closed ticket.');
+        }
+
         $request->validate(['body' => 'required|string|max:5000']);
         $ticket->messages()->create(['user_id' => auth()->id(), 'body' => $request->body]);
         return back()->with('success', 'Reply sent.');
